@@ -1,23 +1,19 @@
-import java.util.Random;
-
+import java.util.*;
 class Mapa {
     private Territorio territorio;
     private Ejercito[][] tablero;
     private static final int FILAS = 10;
     private static final int COLUMNAS = 10;
     private Random random = new Random();
-
     public Mapa() {
         generarTerritorio();
         tablero = new Ejercito[FILAS][COLUMNAS];
         generarEjercitosAleatorios();
     }
-
     private void generarTerritorio() {
         Territorio[] territorios = Territorio.values();
         territorio = territorios[random.nextInt(territorios.length)];
     }
-
     private void generarEjercitosAleatorios() {
         for (int i = 0; i < FILAS; i++) {
             for (int j = 0; j < COLUMNAS; j++) {
@@ -31,7 +27,6 @@ class Mapa {
             }
         }
     }
-
     private void aplicarBonusTerritorio(Ejercito ejercito) {
         if ((territorio == Territorio.BOSQUE && (ejercito.getReino() == Reino.INGLATERRA || ejercito.getReino() == Reino.SACRO_IMPERIO_ROMANO)) ||
             (territorio == Territorio.CAMPO_ABIERTO && (ejercito.getReino() == Reino.FRANCIA || ejercito.getReino() == Reino.SACRO_IMPERIO_ROMANO)) ||
@@ -41,15 +36,12 @@ class Mapa {
             ejercito.incrementarVida(1);
         }
     }
-
     public Ejercito[][] getTablero() {
         return tablero;
     }
-
     public Territorio getTerritorio() {
         return territorio;
     }
-
     public void imprimirTablero() {
         System.out.println("Tablero:");
         for (int i = 0; i < FILAS; i++) {
